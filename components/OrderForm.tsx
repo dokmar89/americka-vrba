@@ -7,6 +7,9 @@ import { useState, useEffect } from "react"
 const CENA_ZA_KUS = 890
 const CENA_DOPRAVY = 299
 const CENA_DOBIRKY = 45
+const PROMO_KODY = {
+  'VRBA10': 0.1 // 10% sleva
+}
 
 export default function OrderForm({ onClose }: { onClose: () => void }) {
   const [formData, setFormData] = useState({
@@ -19,15 +22,22 @@ export default function OrderForm({ onClose }: { onClose: () => void }) {
     pocetKusu: "1",
     doprava: "",
     platba: "",
+    promoKod: ""
   })
 
   const [celkovaCena, setCelkovaCena] = useState(0)
+  const [sleva, setSleva] = useState(0)
+  const [promoKodAktivni, setPromoKodAktivni] = useState(false)
   const [showBankDetails, setShowBankDetails] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   useEffect(() => {
     const pocetKusu = Number.parseInt(formData.pocetKusu)
     const cenaProduktu = pocetKusu * CENA_ZA_KUS
+    
+    // Výpočet slevy
+    const aktualniSleva = promoKodAktivni ? cenaProduktu * PROMO_KODY['VRBA10'] : 0
+    setSleva(aktualniSleva)
 
     let cenaDopravy = 0
     if (formData.doprava === "prepravni") {
@@ -43,13 +53,22 @@ export default function OrderForm({ onClose }: { onClose: () => void }) {
       else cenaDobirky = 3 * CENA_DOBIRKY
     }
 
-    setCelkovaCena(cenaProduktu + cenaDopravy + cenaDobirky)
+    setCelkovaCena(cenaProduktu - aktualniSleva + cenaDopravy + cenaDobirky)
     setShowBankDetails(formData.platba === "prevod")
-  }, [formData])
+  }, [formData, promoKodAktivni])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
+  }
+
+  const handlePromoKod = () => {
+    if (formData.promoKod.toUpperCase() === 'VRBA10') {
+      setPromoKodAktivni(true)
+    } else {
+      alert('Neplatný promo kód')
+      setPromoKodAktivni(false)
+    }
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -65,6 +84,8 @@ export default function OrderForm({ onClose }: { onClose: () => void }) {
         body: JSON.stringify({
           ...formData,
           celkovaCena,
+          sleva,
+          promoKod: promoKodAktivni ? formData.promoKod : '',
         }),
       })
 
@@ -220,11 +241,55 @@ export default function OrderForm({ onClose }: { onClose: () => void }) {
               </label>
             </div>
           </div>
+          <div className="mb-6">
+            <label className="block mb-2">Promo kód (nepovinné)</label>
+            <div className="flex gap-2">
+              <input
+                type="text"
+                name="promoKod"
+                className="flex-1 p-2 border rounded"
+                value={formData.promoKod}
+                onChange={handleChange}
+                placeholder="Zadejte promo kód"
+              />
+              <button
+                type="button"
+                onClick={handlePromoKod}
+                className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 transition-colors"
+              >
+                Ověřit kód
+              </button>
+            </div>
+          </div>
           <div className="bg-gray-100 p-4 rounded-lg">
             <h3 className="text-lg font-semibold mb-2">Souhrn objednávky</h3>
-            <p>
-              Celková cena: <strong>{celkovaCena} Kč</strong>
-            </p>
+            <div className="space-y-2">
+              <p>
+                Cena za zboží: <strong>{Number.parseInt(formData.pocetKusu) * CENA_ZA_KUS} Kč</strong>
+              </p>
+              {sleva > 0 && (
+                <p className="text-green-600">
+                  Sleva (VRBA10): <strong>-{sleva} Kč</strong>
+                </p>
+              )}
+              {formData.doprava === "prepravni" && (
+                <p>Doprava: <strong>{
+                  Number.parseInt(formData.pocetKusu) <= 2 ? CENA_DOPRAVY :
+                  Number.parseInt(formData.pocetKusu) <= 4 ? 2 * CENA_DOPRAVY :
+                  3 * CENA_DOPRAVY
+                } Kč</strong></p>
+              )}
+              {formData.platba === "dobirka" && (
+                <p>Dobírka: <strong>{
+                  Number.parseInt(formData.pocetKusu) <= 2 ? CENA_DOBIRKY :
+                  Number.parseInt(formData.pocetKusu) <= 4 ? 2 * CENA_DOBIRKY :
+                  3 * CENA_DOBIRKY
+                } Kč</strong></p>
+              )}
+              <p className="text-lg font-bold border-t pt-2 mt-2">
+                Celková cena: {celkovaCena} Kč
+              </p>
+            </div>
           </div>
           {showBankDetails && (
             <div className="bg-yellow-100 p-4 rounded-lg">
