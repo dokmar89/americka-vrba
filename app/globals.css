@@ -1253,54 +1253,100 @@ footer {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 0.95); /* Tmavší pozadí pro lepší kontrast */
   display: none;
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease; /* Plynulé objevení/zmizení */
 }
 
 .gallery-modal.active {
   display: flex;
+  opacity: 1;
 }
 
 .gallery-modal-content {
-  max-width: 80%;
-  max-height: 80vh;
+  max-width: 90%;
+  max-height: 90vh;
   position: relative;
-  background: black;
+  background: transparent;
   padding: 1rem;
   border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gallery-modal-content img {
+  max-width: 100%;
+  max-height: 85vh;
+  height: auto;
+  width: auto;
+  object-fit: contain;
 }
 
 .gallery-modal-close,
 .gallery-modal-prev,
 .gallery-modal-next {
   position: absolute;
-  background: transparent;
+  background: rgba(0, 0, 0, 0.5); /* Poloprůhledné pozadí tlačítek */
   border: none;
   color: white;
-  font-size: 1.5rem;
+  font-size: 2rem; /* Větší ikony */
   cursor: pointer;
-  padding: 0.5rem;
+  padding: 1rem;
   z-index: 1001;
+  border-radius: 50%; /* Kulatá tlačítka */
+  transition: all 0.3s ease; /* Plynulé efekty */
+  backdrop-filter: blur(4px); /* Rozmazané pozadí tlačítek */
+}
+
+.gallery-modal-close:hover,
+.gallery-modal-prev:hover,
+.gallery-modal-next:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: scale(1.1);
 }
 
 .gallery-modal-close {
-  top: 1rem;
-  right: 1rem;
+  top: 2rem;
+  right: 2rem;
 }
 
 .gallery-modal-prev {
-  left: 1rem;
+  left: 2rem;
   top: 50%;
   transform: translateY(-50%);
 }
 
 .gallery-modal-next {
-  right: 1rem;
+  right: 2rem;
   top: 50%;
   transform: translateY(-50%);
+}
+
+/* Přidání responzivity pro mobilní zařízení */
+@media (max-width: 768px) {
+  .gallery-modal-content {
+    max-width: 95%;
+  }
+  
+  .gallery-modal-close,
+  .gallery-modal-prev,
+  .gallery-modal-next {
+    font-size: 1.5rem;
+    padding: 0.75rem;
+  }
+  
+  .gallery-modal-prev {
+    left: 1rem;
+  }
+  
+  .gallery-modal-next {
+    right: 1rem;
+  }
 }
 
 /* ========== ORDER MODAL ========== */
