@@ -2,8 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Základní reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Základní proměnné */
+:root {
+  --primary-color: #32A250;
+  --secondary-color: #2b8d45;
+  --text-color: #333;
+  --background-light: #f4f9f4;
+  --white: #ffffff;
+}
+
+/* Custom Font */
+@font-face {
+  font-family: 'Ambery Garden';
+  src: url('/fonts/Ambery Garden.woff2') format('woff2'),
+       url('/fonts/Ambery Garden.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Základní styly */
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Merriweather', serif;
+  line-height: 1.6;
+  color: var(--text-color);
 }
 
 @layer base {
@@ -146,66 +174,8 @@ body {
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-/* ========== NAVIGATION ========== */
-.navbar {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% - 40px);
-  max-width: 1200px;
-  background-color: rgba(194, 252, 197, 0.6);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  border-radius: 30px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-  padding: 15px 30px;
-  transition: all 0.3s ease;
-}
 
-.nav-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-}
 
-.nav-logo {
-  font-family: 'Ambery Garden', cursive;
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: rgb(29, 78, 37);
-  text-decoration: none;
-  transition: transform 0.3s ease;
-}
-
-.nav-logo:hover {
-  transform: scale(1.05);
-}
-
-.nav-links {
-  font-family: 'Ambery Garden', cursive;
-  display: flex;
-  gap: 2rem;
-  list-style: none;
-}
-.nav-links a {
-  font-family: 'Ambery Garden', cursive;
-  color: rgb(35, 54, 17);
-  text-decoration: none;
-  font-weight: 400;
-  transition: color 0.3s ease;
-}
-.nav-links a:hover {
-  color: #151b15;
-}
-.nav-toggle {
-  display: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
 
 /* ========== HERO SECTION ========== */
 .hero {
@@ -218,171 +188,116 @@ body {
   align-items: center;
   text-align: center;
   color: white;
-  padding: 2rem;
+  padding: 2rem; /* Zachovej padding, ale uprav ho pro menší obrazovky */
   margin-top: 0;
   backdrop-filter: blur(40px);
   -webkit-backdrop-filter: blur(40px);
 }
+
 .hero-content {
   max-width: 1200px;
   margin: 0 auto;
   position: relative;
+  width: 100%; /* Důležité pro responzivitu - zajistí, že obsah se přizpůsobí šířce */
+  padding: 0 1rem; /* Přidán padding po stranách, aby obsah nebyl až u okrajů na malých obrazovkách */
 }
-.hero h1 {
+
+.hero-title {
   font-family: 'Ambery Garden', cursive;
-  font-size: 5rem;
+  font-size: 5rem; /* Základní velikost */
   font-weight: 700;
   margin-bottom: 1.5rem;
   line-height: 1.2;
 }
-.hero p {
+.hero-paragraph{
   font-size: 1.25rem;
   margin-bottom: 2rem;
   opacity: 0.9;
 }
+
 .hero-buttons {
   display: flex;
+  flex-direction: column; /* Na mobilu tlačítka pod sebou */
   gap: 1rem;
   justify-content: center;
+  align-items: center; /* Centrování tlačítek */
 }
 
-/* ========== PROFESSIONAL PRICING STICKER ========== */
-.hero-content {
-  position: relative;
+.hero-button-order, .hero-button-more {
+    @apply bg-[#32A250] text-white px-8 py-4 rounded-full text-lg font-medium transition-all duration-300 hover:bg-[#2b8d45] hover:transform hover:-translate-y-1 hover:shadow-lg;
+  width: 100%; /* Tlačítka na celou šířku na mobilu */
+  max-width: 300px;  /* Maximální šířka, aby nevypadala příliš široká na tabletech */
+}
+.hero-button-more{
+  @apply bg-transparent border-2 border-white text-white px-8 py-4 rounded-full text-lg font-medium transition-all duration-300 hover:bg-white/10 hover:transform hover:-translate-y-1 hover:shadow-lg;
 }
 
-.pricing-sticker {
-  position: absolute;
-  top: 5%;
-  right: -5%;
-  width: 200px;
-  background: transparent;
-  color: transparent;
-  padding: 0.75rem 1.5rem;
-  transform: rotate(15deg);
-  text-align: center;
-  font-weight: 700;
-  font-size: 1.2rem;
-  box-shadow: 0 4px 10px transparent;
-  z-index: 10;
-  letter-spacing: 1px;
-  border-radius: 50px;
-  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
-  opacity: 1;
-  visibility: hidden;
-  transform: translateX(0) rotate(15deg);
+.pricing-visacka {
+    @apply bg-[#2b8d45] text-white px-0 py-0 text-sm font-bold text-center shadow-md z-10 rounded-sm transition-transform duration-500  hover:scale-105;
+    white-space: normal;
+    position: absolute; /* Absolutní pozice */
+    top: 100%;          /* Pod tlačítkem */
+    left: 50%;          /* Centrování */
+    transform: translateX(-50%); /* Centrování */
+    width: max-content;     /* Šířka podle obsahu */
+    margin-top: 0.5rem;      /* Odsazení od tlačítka */
+    padding: 0.25rem 0.5rem;/* Menší padding */
+    white-space: nowrap; /*zabrani zalomeni visacky*/
 }
 
-.pricing-sticker::before {
-  content: '';
-  position: absolute;
-  top: -15px;
-  right: 15px;
-  width: 80px;
-  height: 40px;
-  background: transparent;
-  transform: skew(-15deg);
-  z-index: -1;
-  box-shadow: 0 5px 15px transparent;
-}
-
-.pricing-sticker-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid rgba(45, 90, 39, 0.1);
-}
-
-.pricing-sticker-price {
-  color: #2d5a27;
-  font-weight: 800;
-  font-size: 1.8rem;
-  letter-spacing: -1px;
-}
-
-.pricing-sticker-height {
-  background: #2d5a27;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 50px;
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-
-.pricing-sticker-details {
-  font-size: 0.9rem;
-  color: #444;
-  line-height: 1.6;
-  margin-bottom: 1rem;
-}
-
-.pricing-sticker-button:hover {
-  background: #1e4019;
-  transform: translateY(-3px);
-  box-shadow: 0 15px 25px rgba(45, 90, 39, 0.2);
-}
-
-.pricing-sticker-tax {
-  text-align: center;
-  font-size: 0.8rem;
-  color: #666;
-  margin-top: 0.5rem;
-  font-style: italic;
-}
-
-@media (max-width: 1400px) {
-  .pricing-sticker {
-    right: -30%;
-    width: 300px;
+/* Media Queries - upravují styly pro různé velikosti */
+@media (min-width: 640px) { /* sm (Tailwind breakpoint) */
+  .hero-title {
+    font-size: 6rem; /* Větší font pro tablety */
+  }
+  .hero-buttons {
+    flex-direction: row; /* Tlačítka vedle sebe */
+  }
+  .hero-button-order, .hero-button-more{
+      width: auto; /* Tlacitka uz nemaji byt na celou sirku*/
   }
 }
 
-@media (max-width: 1200px) {
-  .pricing-sticker {
-    right: -35%;
-    width: 280px;
+
+@media (min-width: 1024px) { /* lg (Tailwind breakpoint) */
+  .hero-title {
+    font-size: 7rem; /* Ještě větší font pro desktop */
   }
+   .hero-paragraph{
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+   .hero-buttons {
+    gap: 4rem;
+   }
 }
 
-@media (max-width: 992px) {
-  .pricing-sticker {
-    position: static;
-    margin-top: 1.5rem;
-    width: 100%;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
+/* globals.css */
 
 /* ========== ABOUT SECTION ========== */
 .about-section {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12; /* Použij Tailwind pro základní layout */
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 6rem 2rem;
+  grid-template-columns: 1fr; /* Na mobilu vše pod sebou */
+  gap: 2rem; /* Menší mezera na mobilu */
   align-items: center;
 }
 
 .about-image {
-  grid-column: 1;
-  width: 100%;
+  width: 100%; /* Obrázek na celou šířku */
 }
 
 .about-image img {
   width: 100%;
-  height: 100%;
+  height: auto;  /* Důležité: height: auto; místo height: 100%; */
   object-fit: cover;
-  border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  border-radius: 1rem; /* Použij Tailwind pro zaoblení */
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1); /* Můžeš i Tailwind: shadow-xl */
+  display: block; /* Odstraní mezery pod obrázkem */
 }
 
 .about-content {
-  grid-column: 2;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -409,8 +324,9 @@ body {
 }
 
 .feature-icon {
-  font-size: 2rem;
-  margin-right: 1rem;
+    @apply text-2xl; /* Velikost ikony přes Tailwind */
+    margin-right: 1rem;
+
 }
 
 .feature-item-content {
@@ -422,7 +338,21 @@ body {
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
 }
+.section-title{
+  @apply text-4xl font-bold mb-8;
+}
 
+
+/* Media Queries pro větší obrazovky */
+@media (min-width: 768px) { /* md (Tailwind breakpoint) */
+  .about-section {
+    grid-template-columns: 1fr 1fr; /* Dva sloupce vedle sebe */
+    gap: 4rem; /* Větší mezera */
+  }
+  .about-content > p{
+    text-align: left; /* Zarovnání textu na větších obrazovkách */
+  }
+}
 /* ========== CTA SECTION ========== */
 .cta-section {
   background: linear-gradient(90deg, rgba(50, 162, 80, 0.95), rgba(43, 141, 69, 0.95)), url('/galerie/vrba_americka_11.jpg');
@@ -513,8 +443,12 @@ body {
 
 /* ========== BENEFITS SECTION ========== */
 .benefits-section {
-  padding: 6rem 2rem;
   background-color: white;
+}
+.benefits-section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 6rem 2rem;
 }
 .benefits-grid {
   display: grid;
@@ -525,7 +459,7 @@ body {
 
 .benefits-card {
   background: rgba(255, 255, 255, 0.829);
-  padding: 2rem;
+  padding: 1rem;
   border-radius: 20px;
   transition: all 0.3s ease;
   box-shadow: 0 10px 25px rgb(186, 233, 177);
@@ -988,85 +922,79 @@ body {
   }
 }
 
-/* ========== CONTACT SECTION ========== */
+/*/* ========== CONTACT SECTION ========== */
 .contact-section {
-  padding: 8rem 2rem;
-  background: linear-gradient(135deg, #f1fdf4 0%, #ffffff 100%);
+  @apply py-16; /* Tailwind pro padding */
+  background: linear-gradient(135deg, #f1fdf4 0%, #ffffff 100%); /* Zachovej background */
 }
+
 .contact-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  background: white;
-  border-radius: 30px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-  overflow: hidden;
+  @apply max-w-7xl mx-auto bg-white rounded-3xl shadow-lg overflow-hidden; /* Tailwind pro základní layout */
   display: grid;
-  grid-template-columns: 1fr 1.5fr;
+  grid-template-columns: 1fr; /* Na mobilu vše pod sebou */
 }
+
 .contact-info {
-  background: linear-gradient(135deg, #32A250 0%, #2b8d45 100%);
+  background: linear-gradient(135deg, #32A250 0%, #2b8d45 100%); /* Zachovej background */
   color: white;
-  padding: 4rem 2rem;
+  @apply p-8; /* Tailwind pro padding */
+  text-align: center; /* Centrování textu na mobilu */
 }
+
 .contact-info h3 {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  color: white;
+  @apply text-2xl mb-4 text-white; /* Tailwind pro styl nadpisu */
 }
+
 .contact-info p {
-  opacity: 0.9;
-  margin-bottom: 2rem;
-  font-size: 1.1rem;
+  @apply opacity-90 mb-8 text-lg; /* Tailwind pro styl odstavce */
 }
+
 .contact-details {
-  margin-top: 3rem;
+  @apply mt-8;
 }
+
 .contact-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1.5rem;
+  @apply flex items-center mb-4;
 }
+
 .contact-icon {
-  background: rgba(255, 255, 255, 0.2);
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 1rem;
+  @apply bg-white/20 w-10 h-10 rounded-full flex items-center justify-center mr-4;
 }
+
 .contact-form {
-  padding: 4rem;
+  @apply p-8;
 }
+
 .form-group {
-  margin-bottom: 2rem;
+  @apply mb-6;
 }
+
 .form-group label {
-  display: block;
-  margin-bottom: 0.8rem;
-  color: #1a1a1a;
-  font-weight: 500;
+  @apply block mb-2 text-gray-700 font-medium;
 }
+
 .form-group input,
 .form-group select,
 .form-group textarea {
-  width: 100%;
-  padding: 1rem;
-  border: 2px solid #eee;
-  border-radius: 12px;
-  font-size: 1rem;
-  transition: border-color 0.3s ease;
+  @apply w-full px-4 py-3 border-2 border-gray-200 rounded-lg text-base transition-colors duration-300 focus:border-green-500 focus:outline-none;
 }
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-  border-color: #32A250;
-  outline: none;
-}
+
 .form-group textarea {
-  height: 120px;
-  resize: vertical;
+  @apply h-32 resize-y; /* Resizable pouze vertikálně */
+}
+
+/* Media Query pro větší obrazovky */
+@media (min-width: 768px) { /* md (Tailwind breakpoint) */
+  .contact-container {
+    grid-template-columns: 1fr 1.5fr; /* Dva sloupce vedle sebe */
+  }
+
+  .contact-info {
+    text-align: left; /* Zarovnání textu vlevo */
+  }
+}
+.btn-primary {
+  @apply bg-green-500 text-white px-8 py-3 rounded-full text-lg font-medium transition-colors duration-300 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50;
 }
 
 /* ========== FOOTER ========== */
@@ -1298,41 +1226,6 @@ footer {
 
   .gallery-item {
     margin-bottom: 0.5rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .nav-toggle {
-    display: block;
-  }
-  .nav-links {
-    position: fixed;
-    top: 70px;
-    left: 0;
-    right: 0;
-    background: white;
-    padding: 1rem;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    transform: translateY(-100%);
-    opacity: 0;
-    transition: all 0.3s ease;
-    pointer-events: none;
-  }
-  .nav-links.active {
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: all;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  }
-  .nav-links li {
-    width: 100%;
-    text-align: center;
-  }
-  .nav-links a {
-    display: block;
-    padding: 0.5rem;
   }
 }
 
@@ -1598,14 +1491,14 @@ footer {
   padding: 0.5rem 1rem;
   font-size: 0.9rem;
   font-weight: 700;
-  text-align: center;
+  text-align: justify;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
   z-index: 10;
   margin-top: 10px;
   letter-spacing: 1px;
   border-radius: 4px;
   transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
-  white-space: nowrap; /* Prevent text from wrapping */
+   /* Prevent text from wrapping */
 }
 
 .more-info-button-container:hover .pricing-visacka,

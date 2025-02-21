@@ -1,3 +1,4 @@
+// Contact.js
 import React, { useRef } from 'react';
 
 export default function Contact() {
@@ -6,7 +7,7 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    
+
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
@@ -62,17 +63,22 @@ export default function Contact() {
               <input type="text" id="name" name="name" required />
             </div>
             <div className="form-group">
-              <label htmlFor="email">Vaše emailová adresa, na kterou Vám můžeme odpovědět</label>
+              <label htmlFor="email">
+                Vaše emailová adresa, na kterou Vám můžeme odpovědět
+              </label>
               <input type="email" id="email" name="email" required />
             </div>
             <div className="form-group">
               <label htmlFor="message">Co nám chcete sdělit?</label>
               <textarea id="message" name="message" required></textarea>
             </div>
-            <button type="submit" className="btn btn-primary">Odeslat zprávu</button>
+            {/* Tlacitko */}
+            <button type="submit" className="btn-primary">
+              Odeslat zprávu
+            </button>
           </form>
         </div>
       </div>
     </section>
   );
-} 
+}

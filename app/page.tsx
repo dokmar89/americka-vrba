@@ -51,7 +51,16 @@ export default function Home() {
       <FAQ />
         
       <Specs />
+
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
       <Contact />
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
       <Footer />
       {showPopup && (
         <Popup
