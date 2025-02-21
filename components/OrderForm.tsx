@@ -103,16 +103,25 @@ export default function OrderForm({ onClose }: { onClose: () => void }) {
     }
   }
 
+  const handleBackdropClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      onClose()
+    }
+  }
+
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center overflow-y-auto">
-      <div className="bg-white rounded-lg p-8 max-w-2xl w-full m-4">
+    <div 
+      className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 overflow-y-auto"
+      onClick={handleBackdropClick}
+    >
+      <div className="bg-white rounded-lg p-8 max-w-2xl w-full my-8 relative max-h-[90vh] overflow-y-auto">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold">Objednávka - Vrba americká</h2>
           <button onClick={onClose} className="text-2xl">
             &times;
           </button>
         </div>
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label htmlFor="jmeno" className="block mb-2">
