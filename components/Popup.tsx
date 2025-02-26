@@ -15,21 +15,9 @@ export default function Popup({ onClose, onOrder }: { onClose: () => void; onOrd
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-lg p-8 max-w-4xl w-full">
+      <div className="bg-white rounded-lg p-2 max-w-4xl w-full">
         <div className="flex justify-between items-stretch gap-8">
-          {/* Levá strana */}
-          <div className="flex-1">
-            <Image 
-              src="/product-Photoroom.png" 
-              alt="Americká vrba" 
-              width={400} 
-              height={400} 
-              className="rounded-lg h-full"
-              style={{ objectFit: 'contain' }}
-            />
-          </div>
-
-          {/* Pravá strana */}
+                    {/* Pravá strana */}
           <div className="flex-1 flex flex-col">
             <div className="flex justify-between items-start">
               <h2 className="text-4xl font-bold mb-6">Americká vrba pletená</h2>
@@ -72,6 +60,18 @@ export default function Popup({ onClose, onOrder }: { onClose: () => void; onOrd
             >
               Objednat Nyní
             </button>
+            {/* Levá strana */}
+          <div className="flex-1">
+            <Image 
+              src="/product-Photoroom.png" 
+              alt="Americká vrba" 
+              width={400} 
+              height={400} 
+              className="rounded-lg h-full"
+              style={{ objectFit: 'contain' }}
+            />
+          </div>
+
           </div>
         </div>
       </div>

@@ -7,11 +7,11 @@ export default function FAQ() {
   const faqs = [
     {
       question: "Jak často musím vrbu zalévat?",
-      answer: "Voda, voda, voda! KAŽDÝ den během prvních několika týdnů, dokud se dobře neusadí, a od té doby vždy udržujte vlhkost. Pokud v hrnci, postavte jej do podšálku a ujistěte se, že je v něm vždy voda, nebo ještě lépe, použijte ozdobnou nádobu s integrovanou nádržkou. Pokud je zasazena do země, opět zalévejte prvních několik týdnů denně a po založení dobře každý týden první sezónu. Pak se o sebe postará, pokud nenastane sucho. Vrby není možné přelévat – dokonce milují podmáčenou půdu."
+      answer: "Každý den během prvních několika týdnů, dokud se dobře neusadí. Od té doby vždy udržujte vlhkost. Vrba se o sebe postará, pokud nenastane sucho. Milují podmáčenou půdu, takže nehrozí, že je přelijete."
     },
     {
-      question: "Jak často bych měl oříznout topiární korunku?",
-      answer: "Měli byste se snažit stříhat jednou až čtyřikrát za sezónu – méně, pokud chcete efekt ledabylého růstu, a častěji, pokud chcete hustý, formální styl takzvaně „box-hedge“."
+      question: "Jak často bych měl zastřihávat korunku?",
+      answer: "Měli byste se snažit stříhat alespoň jednou za sezónu – méně, pokud chcete aby rostla víc přirozeně, a častěji, pokud chcete hustý, formální styl takzvaný „box-hedge“."
     },
     {
       question: "Jak hluboko zasadit?",
@@ -19,13 +19,13 @@ export default function FAQ() {
     },
     {
       question: "Mohu pěstovat svou vrbu uvnitř?",
-      answer: "V žádném případě! Vrba potřebuje být venku – má ráda chladné, vlhké podmínky a bude se potýkat s nedostatkem světla a tepla, ať už v interiéru, nebo v zimní zahradě, bude čím dál více chřadnout a po několika týdnech umírá. Na zimu je ani nemusíte nijak chránit – jsou 100% mrazuvzdorné."
+      answer: "Vrba potřebuje být venku – má ráda chladné, vlhké podmínky a bude se potýkat s nedostatkem světla a tepla, ať už v interiéru, nebo v zahradě. Zchřadne a může umřít. Na zimu je ani nijak nemusíte chránit – odolávají mrazu."
     }, {
       question: "Zasadit do květináče nebo do země?",
-      answer: "Oboje! Pokud do květináče, pak se ujistěte, že má adekvátní velikost – alespoň tak velkou jako koruna, kterou chcete pěstovat. Každá rostlina v nádobě musí být samozřejmě vždy dobře zalévána."
+      answer: "Můžete oboje. Pokud do květináče, pak se ujistěte, že má adekvátní velikost – alespoň tak velkou jako koruna, kterou chcete pěstovat. Každá rostlina v nádobě musí být samozřejmě vždy dobře zalévána."
     }, {
       question: "Na listech se objevily černé skvrny, co je příčinou a je to problém?",
-      answer: "Existují 3 choroby vrb – strupovitost, antraknóza a rakovina. Odrůdy, které používáme, jsou vysoce odolné vůči těmto infekcím, takže jsou zřídka infikovány, ale za určitých podmínek mohou být mladé rostliny občas napadeny. Pokud je zasaženo pouze několik listů, jednoduše je seberte a opatrně zlikvidujte."
+      answer: "Existují 3 choroby vrb – strupovitost, antraknóza a rakovina. Odrůdy, které používáme, jsou vysoce odolné vůči těmto infekcím, takže jsou zřídka infikovány."
     },
   ];
 
@@ -45,9 +45,11 @@ export default function FAQ() {
               <h3>{faq.question}</h3>
               <span className="faq-toggle">+</span>
             </div>
-            <div className="faq-answer">
-              <p>{faq.answer}</p>
-            </div>
+            {activeIndex === index && (
+              <div className="faq-answer">
+                <p>{faq.answer}</p>
+              </div>
+            )}
           </div>
         ))}
       </div>

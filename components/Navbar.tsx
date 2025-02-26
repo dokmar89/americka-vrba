@@ -13,11 +13,11 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 bg-[#C2D6B4]/80 backdrop-blur-sm z-40">
-      <div className="navbar fixed top-5 left-1/2 transform -translate-x-1/2 w-[calc(100%-40px)] max-w-[1200px] bg-white/60 backdrop-blur-sm rounded-3xl shadow-lg  px-8 py-4 transition-all duration-300">
+      <div className="navbar fixed top-5 left-1/2 transform -translate-x-1/2 w-[calc(100%-20px)] max-w-[1200px] bg-white/60 backdrop-blur-sm rounded-3xl shadow-lg px-4 sm:px-8 py-3 sm:py-4 transition-all duration-300">
         <div className="nav-container flex justify-between items-center">
           <Link
             href="/"
-            className="nav-logo font-['Ambery_Garden'] text-2xl font-medium text-[rgb(29,78,37)] no-underline transition-transform duration-300 hover:scale-105"
+            className="nav-logo font-['Ambery_Garden'] text-xl sm:text-2xl font-medium text-[rgb(29,78,37)] no-underline transition-transform duration-300 hover:scale-105"
           >
             AMERICKAVRBA.CZ
           </Link>
@@ -34,7 +34,7 @@ export default function Navbar() {
           </div>
 
           <ul
-            className={`nav-links font-['Ambery_Garden'] list-none md:flex gap-8 ${isMenuOpen ? 'flex flex-col absolute top-full left-0 w-full bg-white/60 py-4 shadow-lg' : 'hidden'
+            className={`nav-links font-['Ambery_Garden'] list-none md:flex gap-4 lg:gap-8 ${isMenuOpen ? 'flex flex-col absolute top-full left-0 w-full bg-white/90 py-4 shadow-lg rounded-b-xl mt-1' : 'hidden'
               }`}
           >
             <li>

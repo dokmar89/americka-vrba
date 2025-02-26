@@ -95,7 +95,7 @@ export default function Gallery() {
 
   return (
     <section className="gallery-section" id="galerie">
-      <h2 className="section-title">GALERIE</h2>
+      <h2 className="section-title">GALERIE NAŠICH VRB</h2>
       
       <div className="gallery-random-layout">
         <div className="side-images-left">
@@ -103,8 +103,10 @@ export default function Gallery() {
             <div key={`left-${index}`} className="small-image-container">
               <Image 
                 src={src} 
-                alt={`Vrba americká ${index + 1}`} 
+                alt={`Americká vrba pletená - design ${index + 1} - přírodní zahradní dekorace`} 
                 fill
+                sizes="(max-width: 768px) 33vw, 20vw"
+                loading="lazy"
                 style={{ objectFit: 'cover' }}
                 onClick={() => setActiveImageIndex(allImages.indexOf(src))}
               />
@@ -116,8 +118,10 @@ export default function Gallery() {
           {randomizedImages[3] && (
             <Image 
               src={randomizedImages[3]} 
-              alt="Vrba americká - hlavní" 
+              alt="Americká vrba pletená - exkluzivní designový kus pro vaši zahradu" 
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              priority
               style={{ objectFit: 'cover' }}
               onClick={() => setActiveImageIndex(allImages.indexOf(randomizedImages[3]))}
             />
@@ -129,8 +133,10 @@ export default function Gallery() {
             <div key={`right-${index}`} className="small-image-container">
               <Image 
                 src={src} 
-                alt={`Vrba americká ${index + 5}`} 
+                alt={`Americká vrba pletená - ukázka ${index + 5} - živá zahradní socha`} 
                 fill
+                sizes="(max-width: 768px) 33vw, 20vw"
+                loading="lazy"
                 style={{ objectFit: 'cover' }}
                 onClick={() => setActiveImageIndex(allImages.indexOf(src))}
               />
@@ -142,13 +148,13 @@ export default function Gallery() {
       <br></br>
       <br></br>
 
-      <div className="gallery-button-container">
-
+      <div className="w-full flex justify-center items-center mt-8">
         <button 
-          className="btn btn-primary gallery-button"
+          className="btn btn-primary gallery-button mx-auto"
           onClick={() => setShowAllImages(true)}
         >
-Prohlédnout si celou galerii        </button>
+          Prohlédnout si celou galerii
+        </button>
       </div>
 
       {/* Modal pro zobrazení velkých obrázků */}
@@ -202,4 +208,3 @@ Prohlédnout si celou galerii        </button>
     </section>
   )
 }
-

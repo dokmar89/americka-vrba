@@ -37,9 +37,10 @@ export default function Contact() {
 
   return (
     <section className="contact-section" id="kontakt">
+      <h2 className="section-title">KONTAKTUJTE NÁS</h2>
       <div className="contact-container">
         <div className="contact-info">
-          <h3>Kontaktujte nás</h3>
+          <h3></h3>
           <p>Máte dotaz nebo zájem o naše vrby? Neváhejte nás kontaktovat!</p>
           <div className="contact-details">
             <div className="contact-item">

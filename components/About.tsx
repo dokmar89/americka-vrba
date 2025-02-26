@@ -17,7 +17,7 @@ export default function About() {
           />
       </div>
       <div className="about-content">
-        <h2 className="section-title">O NÁS</h2>
+        <h1 className="section-title">O NÁS - AMERICKÁ VRBA</h1>
         <p>
           Více než desetiletí vytváříme přírodní umění, které přináší čistý
           design a harmonii do vašeho venkovního prostoru. Jako rodinná firma se
@@ -31,7 +31,7 @@ export default function About() {
           <div className="feature-item">
             <i className="feature-icon">🌱</i>
             <div className="feature-item-content">
-              <h3>DESIGN MEETS NATURE</h3>
+              <h2 className="feature-title">DESIGN MEETS NATURE</h2>
               <p>
                 Propojujeme tradiční řemeslo s moderní architekturou. Naše vrby
                 se stanou ikonickou součástí vašeho venkovního prostoru.
@@ -41,7 +41,7 @@ export default function About() {
           <div className="feature-item">
             <i className="feature-icon">🤝</i>
             <div className="feature-item-content">
-              <h3>VÁŠ PARTNER PRO STYLOVÝ OUTDOOR DESIGN</h3>
+              <h2 className="feature-title">VÁŠ PARTNER PRO STYLOVÝ OUTDOOR DESIGN</h2>
               <p>
                 Řešení přesně pro váš lifestyle – ať už jde o městskou terasu,
                 střešní zahradu nebo jiný pozemek. Váš prostor, vaše pravidla.
@@ -51,7 +51,7 @@ export default function About() {
           <div className="feature-item">
             <i className="feature-icon">🌿</i>
             <div className="feature-item-content">
-              <h3>PREMIUM KVALITA PRO NÁROČNÉ</h3>
+              <h2 className="feature-title">PRÉMIOVÁ KVALITA</h2>
               <p>
                 Pracujeme výhradně s nejkvalitnějšími odrůdami vrb, které
                 splňují vysoké nároky moderního zahradního designu. Nadčasová

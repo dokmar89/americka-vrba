@@ -11,7 +11,7 @@ export default function Hero() {
       <section className="hero" id="domu">
         <div className="hero-content">
           <h1 className="hero-title">AMERICKÁ VRBA PLETENÁ</h1>
-          <p className="hero-paragraph">Nabízíme jedinečné přírodní umění pro vaši zahradu</p>
+          <p className="hero-paragraph">Jedinečné přírodní umění pro vaši zahradu - živé sochy, které rostou s vámi</p>
           <div className="hero-buttons">
             <button
               onClick={() => setShowOrderForm(true)}

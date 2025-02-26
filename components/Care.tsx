@@ -4,7 +4,7 @@ export default function Care() {
   return (
     <section className="care-section" id="pece">
       <div className="care-section-container">
-        <h2 className="section-title">ÚDRŽBA A PÉČE</h2>
+        <h2 className="section-title">JAK UDRŽOVAT NAŠE PLETENÉ VRBY</h2>
         <div className="care-content">
           <div className="care-image">
             <Image
@@ -26,14 +26,14 @@ export default function Care() {
             <div className="care-step">
               <div className="care-step-number">2</div>
               <div className="care-step-content">
-                <h3>UMÍSTĚNÍ</h3>
+                <h3>VHODNÉ MÍSTO</h3>
                 <p>Nejlépe roste na slunných a na vodu bohatých místech. Vhodná pro zahrady i terasy.</p>
               </div>
             </div>
             <div className="care-step">
               <div className="care-step-number">3</div>
               <div className="care-step-content">
-                <h3>ZASTŘIHNUTÍ</h3>
+                <h3>PRAVIDELNÉ ÚPRAVY</h3>
                 <p>Jednou ročně zastřihněte přerostlé výhonky a pravidelně zastřihávejte korunu - více zastřihávání dává lepší tvar.</p>
               </div>
             </div>
