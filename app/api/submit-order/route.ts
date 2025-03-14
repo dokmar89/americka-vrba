@@ -127,12 +127,42 @@ export async function POST(req: Request) {
       html: emailTemplate
     });
 
-    // Email pro vás (stejný obsah + info o zákazníkovi)
+    // Email pro administrátora - stručný souhrn objednávky
+    const adminEmailTemplate = `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <h2>Nová objednávka - Souhrn</h2>
+        
+        <h3>Kontaktní údaje:</h3>
+        <ul>
+          <li>Jméno: ${jmeno}</li>
+          <li>Email: ${email}</li>
+          <li>Telefon: ${telefon}</li>
+        </ul>
+
+        <h3>Doručovací adresa:</h3>
+        <ul>
+          <li>Ulice: ${ulice}</li>
+          <li>Město: ${mesto}</li>
+          <li>PSČ: ${psc}</li>
+        </ul>
+
+        <h3>Detaily objednávky:</h3>
+        <ul>
+          <li>Počet kusů: ${pocetKusu}</li>
+          <li>Způsob dopravy: ${doprava === 'osobni' ? 'Osobní odběr' : 'Přepravní společnost'}</li>
+          <li>Způsob platby: ${platba === 'prevod' ? 'Bankovní převod' : 'Dobírka'}</li>
+          ${promoKod ? `<li>Použitý promo kód: ${promoKod}</li>` : ''}
+          ${sleva > 0 ? `<li>Uplatněná sleva: ${sleva} Kč</li>` : ''}
+          <li>Celková cena: ${celkovaCena} Kč</li>
+        </ul>
+      </div>
+    `;
+
     await transporter.sendMail({
       from: 'info@americkavrba.cz',
       to: 'info@americkavrba.cz',
       subject: `Nová objednávka - ${jmeno}`,
-      html: emailTemplate
+      html: adminEmailTemplate
     });
 
     return NextResponse.json({ success: true });
