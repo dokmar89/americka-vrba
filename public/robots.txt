@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Sitemap: https://americkavrba.cz/sitemap.xml
+
+# Disallow potentially sensitive routes
+Disallow: /api/
+Disallow: /admin/ 

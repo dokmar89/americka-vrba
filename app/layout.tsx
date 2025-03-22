@@ -2,6 +2,9 @@ import type React from "react"
 import "./globals.css"
 import type { Metadata } from "next"
 import { Inter, DM_Sans, Outfit } from "next/font/google"
+import Script from "next/script"
+import CookieConsent from '@/components/CookieConsent'
+import { Analytics } from '@vercel/analytics/react'
 
 const inter = Inter({ 
   subsets: ['latin', 'latin-ext'],
@@ -60,16 +63,24 @@ export const metadata: Metadata = {
       follow: true,
       'max-image-preview': 'large',
       'max-snippet': -1,
+      'max-video-preview': -1,
     },
+    nocache: false,
   },
   alternates: {
     canonical: 'https://americkavrba.cz',
+    languages: {
+      'cs-CZ': 'https://americkavrba.cz',
+    },
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Americká vrba pletená | Přírodní umění pro vaši zahradu',
     description: 'Nabízíme jedinečnou krásnou vrbu americkou, která tvoří elegantní vzor správně zapletenými čtyřmi pruty. Prostě rostou s vámi. Doručení po celé ČR.',
     images: ['/galerie/vrba_americka_design8.jpg'],
+  },
+  verification: {
+    google: 'váš-google-verification-code',
   },
 }
 
@@ -110,7 +121,38 @@ export default function RootLayout({
               "sameAs": [
                 "https://www.facebook.com/people/Americká-vrba-pletená-CZ/61565484336195/",
                 "https://www.instagram.com/americkavrba"
-              ]
+              ],
+              "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "Americká vrba pletená",
+                "itemListElement": [{
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Product",
+                    "name": "Americká vrba pletená",
+                    "description": "Jedinečná pletená vrba americká pro vaši zahradu",
+                    "image": "https://americkavrba.cz/galerie/vrba_americka_design8.jpg",
+                    "brand": {
+                      "@type": "Brand",
+                      "name": "Americká Vrba"
+                    },
+                    "offers": {
+                      "@type": "Offer",
+                      "price": "890",
+                      "priceCurrency": "CZK",
+                      "availability": "https://schema.org/InStock",
+                      "seller": {
+                        "@type": "Organization",
+                        "name": "Americká Vrba"
+                      }
+                    }
+                  }
+                }]
+              },
+              "areaServed": {
+                "@type": "Country",
+                "name": "Česká republika"
+              }
             })
           }}
         />
@@ -127,10 +169,40 @@ export default function RootLayout({
             })
           }}
         />
+        {/* Google Tag Manager */}
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=AW-1684620589"
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+        >
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-1684620589', {
+              'cookie_flags': 'secure;samesite=none',
+              'cookie_domain': 'americkavrba.cz',
+              'cookie_expires': 365 * 24 * 60 * 60 // 1 rok
+            });
+          `}
+        </Script>
+        {/* End Google Tag Manager */}
+        <link
+          rel="preload"
+          href="/fonts/Ambery Garden.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
       </head>
       <body suppressHydrationWarning className={dmSans.className}>
         <div className={outfit.className}>
           {children}
+          <CookieConsent />
+          <Analytics />
         </div>
       </body>
     </html>

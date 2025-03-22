@@ -94,7 +94,8 @@ export async function POST(req: Request) {
             ${ulice}<br>
             ${mesto}<br>
             ${psc}<br>
-            Tel: ${telefon}
+            Tel: ${telefon}<br>
+            Email: ${email}
           </p>
         </div>
 
@@ -156,6 +157,9 @@ export async function POST(req: Request) {
           <li>Celková cena: ${celkovaCena} Kč</li>
         </ul>
       </div>
+      <br>
+      <br>
+
     `;
 
     await transporter.sendMail({
