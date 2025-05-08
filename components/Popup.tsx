@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Image from "next/image"
+import PriceDiscount from "./PriceDiscount"
 
 export default function Popup({ onClose, onOrder }: { onClose: () => void; onOrder: () => void }) {
   const [isVisible, setIsVisible] = useState(false)
@@ -17,7 +18,7 @@ export default function Popup({ onClose, onOrder }: { onClose: () => void; onOrd
     <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
       <div className="bg-white rounded-lg p-2 max-w-4xl w-full">
         <div className="flex justify-between items-stretch gap-8">
-                    {/* Pravá strana */}
+          {/* Pravá strana */}
           <div className="flex-1 flex flex-col">
             <div className="flex justify-between items-start">
               <h2 className="text-4xl font-bold mb-6">Americká vrba pletená</h2>
@@ -26,9 +27,8 @@ export default function Popup({ onClose, onOrder }: { onClose: () => void; onOrd
               </button>
             </div>
 
-            <div className="bg-green-500 text-white px-8 py-4 rounded-full font-bold inline-block mb-8 text-center">
-              <span className="text-3xl">890 Kč</span>
-              <span className="block text-lg mt-1">včetně DPH 12%</span>
+            <div className="bg-green-100 px-8 py-4 rounded-lg font-bold inline-block mb-8 text-center">
+              <PriceDiscount />
             </div>
 
             <ul className="space-y-4 mb-8 text-lg">
@@ -60,7 +60,8 @@ export default function Popup({ onClose, onOrder }: { onClose: () => void; onOrd
             >
               Objednat Nyní
             </button>
-            {/* Levá strana */}
+          </div>
+          {/* Levá strana */}
           <div className="flex-1">
             <Image 
               src="/product-Photoroom.png" 
@@ -70,8 +71,6 @@ export default function Popup({ onClose, onOrder }: { onClose: () => void; onOrd
               className="rounded-lg h-full"
               style={{ objectFit: 'contain' }}
             />
-          </div>
-
           </div>
         </div>
       </div>

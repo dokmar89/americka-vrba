@@ -14,6 +14,7 @@ import Footer from "@/components/Footer"
 import Popup from "@/components/Popup"
 import OrderForm from "@/components/OrderForm"
 import Specs from '@/components/Specs'
+import PriceDiscount from '@/components/PriceDiscount'
 
 export default function Home() {
   const [showPopup, setShowPopup] = useState(true)

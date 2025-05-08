@@ -2,6 +2,7 @@
 import Link from "next/link"
 import { useState } from "react"
 import OrderForm from "./OrderForm"
+import PriceDiscount from "./PriceDiscount"
 
 export default function Hero() {
   const [showOrderForm, setShowOrderForm] = useState(false)
@@ -26,7 +27,9 @@ export default function Hero() {
                 <span className="pricing-visacka">
                   PŘIJÍMÁME OBJEDNÁVKY NA SEZÓNU 2025!
                   <br />
-                  <strong>890 Kč / ks</strong>
+                  <div className="mt-2">
+                    <PriceDiscount isHero={true} />
+                  </div>
                 </span>
               </div>
           </div>
