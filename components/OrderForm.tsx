@@ -4,7 +4,7 @@ import type React from "react"
 
 import { useState, useEffect } from "react"
 
-const CENA_ZA_KUS = 890
+const CENA_ZA_KUS = 799
 const CENA_DOPRAVY = 299
 const CENA_DOBIRKY = 45
 const PROMO_KODY = {

@@ -114,7 +114,7 @@ export default function RootLayout({
               "logo": "https://americkavrba.cz/horizontalni-logo.png",
               "offers": {
                 "@type": "Offer",
-                "price": "890",
+                "price": "799",
                 "priceCurrency": "CZK",
                 "availability": "https://schema.org/InStock"
               },
@@ -138,7 +138,7 @@ export default function RootLayout({
                     },
                     "offers": {
                       "@type": "Offer",
-                      "price": "890",
+                      "price": "799",
                       "priceCurrency": "CZK",
                       "availability": "https://schema.org/InStock",
                       "seller": {
