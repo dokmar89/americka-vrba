@@ -21,7 +21,7 @@ export default function CTA() {
                 onClick={() => setShowOrderForm(true)}
                 className="btn btn-primary"
               >
-                Objednat nyní
+                Získat akční cenu
               </button>
               <a href="#kontakt" className="btn btn-secondary">Kontaktujte nás</a>
             </div>

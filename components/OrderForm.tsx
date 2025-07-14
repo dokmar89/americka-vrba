@@ -4,7 +4,7 @@ import type React from "react"
 
 import { useState, useEffect } from "react"
 
-const CENA_ZA_KUS = 799
+const CENA_ZA_KUS = 749
 const CENA_DOPRAVY = 299
 const CENA_DOBIRKY = 45
 const PROMO_KODY = {
@@ -122,6 +122,17 @@ export default function OrderForm({ onClose }: { onClose: () => void }) {
           </button>
         </div>
         <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Info boxy doprava/platba */}
+          <div className="flex flex-col md:flex-row gap-4 mb-2">
+            <div className="flex-1 bg-blue-50 border border-blue-300 rounded-lg p-3 flex items-center gap-3">
+              <span className="text-blue-600 text-2xl">🚚</span>
+              <span>Doprava po celé ČR za 299 Kč (max. 2 ks v jedné zásilce). Osobní odběr zdarma.</span>
+            </div>
+            <div className="flex-1 bg-yellow-50 border border-yellow-300 rounded-lg p-3 flex items-center gap-3">
+              <span className="text-yellow-600 text-2xl">💳</span>
+              <span>Platba převodem zdarma, dobírka za 45 Kč.</span>
+            </div>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label htmlFor="jmeno" className="block mb-2">
@@ -299,6 +310,11 @@ export default function OrderForm({ onClose }: { onClose: () => void }) {
                 Celková cena: {celkovaCena} Kč
               </p>
             </div>
+          </div>
+          {/* Money-back guarantee box */}
+          <div className="bg-green-50 border border-green-400 text-green-900 rounded-lg p-4 mt-4 text-center shadow-sm">
+            <strong>Garance vrácení peněz!</strong><br />
+            Nakupujete bez rizika – pokud nebudete spokojeni, vrátíme vám peníze do 30 dnů od doručení. Vaše spokojenost je pro nás na prvním místě.
           </div>
           {showBankDetails && (
             <div className="bg-yellow-100 p-4 rounded-lg">

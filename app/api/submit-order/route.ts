@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
-const CENA_ZA_KUS = 890;
+const CENA_ZA_KUS = 749;
 
 const transporter = nodemailer.createTransport({
   host: 'wes1-smtp.wedos.net',

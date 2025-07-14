@@ -20,7 +20,7 @@ export default function Specs() {
           <div className="specs-content">
             <strong>Zapletená vrba americká</strong><br />
             <strong>Výška:</strong> 150-160cm<br />
-            <strong>Cena:</strong> 890 Kč / ks<br />
+            <strong>Cena:</strong> 749 Kč / ks<br />
             <strong>Doprava:</strong> 299 Kč / objednávka<br />
             (max 2 ks v jedné objednávce)<br />
             <strong>Dobírka:</strong> 45 Kč / objednávka<br />
