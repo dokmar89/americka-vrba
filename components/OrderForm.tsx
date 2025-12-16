@@ -3,6 +3,7 @@
 import type React from "react"
 
 import { useState, useEffect } from "react"
+import { FaInfoCircle } from "react-icons/fa"
 
 const CENA_ZA_KUS = 749
 const CENA_DOPRAVY = 299
@@ -90,14 +91,14 @@ export default function OrderForm({ onClose }: { onClose: () => void }) {
       })
 
       if (response.ok) {
-        alert("Objednávka byla úspěšně odeslána!")
+        alert("Předobjednávka byla úspěšně odeslána!")
         onClose()
       } else {
-        throw new Error("Chyba při odesílání objednávky")
+        throw new Error("Chyba při odesílání předobjednávky")
       }
     } catch (error) {
-      console.error("Chyba při odesílání objednávky:", error)
-      alert("Nastala chyba při odesílání objednávky. Prosím, zkuste to znovu později.")
+      console.error("Chyba při odesílání předobjednávky:", error)
+      alert("Nastala chyba při odesílání předobjednávky. Prosím, zkuste to znovu později.")
     } finally {
       setIsSubmitting(false)
     }
@@ -116,10 +117,17 @@ export default function OrderForm({ onClose }: { onClose: () => void }) {
     >
       <div className="bg-white rounded-lg p-8 max-w-2xl w-full my-8 relative max-h-[90vh] overflow-y-auto">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold">Objednávka - Vrba americká</h2>
+          <h2 className="text-2xl font-bold">Předobjednávka - Vrba americká (Sezóna 2026)</h2>
           <button onClick={onClose} className="text-2xl">
             &times;
           </button>
+        </div>
+        <div className="bg-gradient-to-r from-green-100 to-green-200 border-l-4 border-green-500 text-green-800 rounded-lg p-4 mb-6 shadow-md flex items-center">
+          <FaInfoCircle className="text-2xl mr-4" />
+          <div>
+            <p className="font-bold">Toto je předobjednávka na sezónu 2026.</p>
+            <p className="text-sm">Vaše vrbové pruty budou s láskou vypěstovány a odeslány v březnu 2026.</p>
+          </div>
         </div>
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Info boxy doprava/platba */}
@@ -311,11 +319,6 @@ export default function OrderForm({ onClose }: { onClose: () => void }) {
               </p>
             </div>
           </div>
-          {/* Money-back guarantee box */}
-          <div className="bg-green-50 border border-green-400 text-green-900 rounded-lg p-4 mt-4 text-center shadow-sm">
-            <strong>Garance vrácení peněz!</strong><br />
-            Nakupujete bez rizika – pokud nebudete spokojeni, vrátíme vám peníze do 30 dnů od doručení. Vaše spokojenost je pro nás na prvním místě.
-          </div>
           {showBankDetails && (
             <div className="bg-yellow-100 p-4 rounded-lg">
               <h3 className="text-lg font-semibold mb-2">Informace k platbě</h3>
@@ -335,7 +338,7 @@ export default function OrderForm({ onClose }: { onClose: () => void }) {
             className="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition-colors"
             disabled={isSubmitting}
           >
-            {isSubmitting ? "Odesílání..." : "Odeslat objednávku"}
+            {isSubmitting ? "Odesílání..." : "Odeslat předobjednávku"}
           </button>
         </form>
       </div>
