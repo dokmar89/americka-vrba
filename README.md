@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Americká vrba — product and enquiry website
 
-## Getting Started
+A Czech product website for American willow plants, combining product information, care guidance, a gallery and order/contact forms.
 
-First, run the development server:
+**Status:** Portfolio website source; email delivery and production operation require deployment-specific validation.
 
-```bash
+## Scope
+
+- Product benefits, specifications, care information, FAQ and image gallery.
+- Order form and modal UI.
+- Next.js server routes for contact messages and order submission using Nodemailer.
+- Cookie-consent UI and reusable landing-page sections.
+
+## Technology
+
+Next.js, React, TypeScript, Tailwind CSS, Nodemailer.
+
+## Architecture and source map
+
+- `app/page.tsx` — landing-page composition
+- `components/` — product sections, gallery and forms
+- `app/api/contact/route.ts` — contact email handler
+- `app/api/submit-order/route.ts` — order email handler
+- `app/api/images/route.ts` — image-list endpoint
+
+## Local development
+
+Requires Node.js and npm. From the repository root:
+
+```sh
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Build command declared by this checkout: `npm run build`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+These are the repository scripts, not a claim of a passing build. Dependency installation, build and live integrations were not executed during the documentation review.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Configuration and limitations
 
-## Learn More
+Both mail handlers read `EMAIL_PASSWORD` on the server. Review their existing SMTP sender and recipient configuration and replace it with an authorized test mailbox before testing; account identifiers are intentionally omitted here. Never commit mailbox credentials. An order form does not establish payment processing or an order-management backend.
 
-To learn more about Next.js, take a look at the following resources:
+The current development script binds to `0.0.0.0`. For a local-only preview, use `npx next dev -H 127.0.0.1`. Multiple Next.js configuration files are present; verify the effective configuration before deployment.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Portfolio relevance
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Demonstrates a complete user-facing flow from product discovery to a server-side enquiry integration, with clear separation of public UI and mail credentials.
 
-## Deploy on Vercel
+## Documentation next steps
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Capture screenshots using synthetic data, document a reproducible test run, and record which integrations have been verified. Keep credentials and deployment-specific configuration outside version control.
