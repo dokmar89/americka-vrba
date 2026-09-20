@@ -1,51 +1,51 @@
-# Americká vrba — product and enquiry website
+# Americká vrba — produktový a poptávkový web
 
-A Czech product website for American willow plants, combining product information, care guidance, a gallery and order/contact forms.
+Český produktový web pro americkou vrbu: informace o rostlinách, péče, galerie a objednávkové či kontaktní formuláře.
 
-**Status:** Portfolio website source; email delivery and production operation require deployment-specific validation.
+**Stav:** Zdrojový kód webu do portfolia; doručování e-mailů a produkční provoz vyžadují ověření konkrétního nasazení.
 
-## Scope
+## Co projekt obsahuje
 
-- Product benefits, specifications, care information, FAQ and image gallery.
-- Order form and modal UI.
-- Next.js server routes for contact messages and order submission using Nodemailer.
-- Cookie-consent UI and reusable landing-page sections.
+- Výhody produktu, parametry, péče, odpovědi na časté otázky a galerie.
+- Objednávkový formulář a modální okno.
+- Serverové cesty Next.js pro kontaktní zprávy a objednávky s knihovnou Nodemailer.
+- Rozhraní souhlasu s cookies a opakovaně použitelné sekce stránky.
 
-## Technology
+## Technologie
 
 Next.js, React, TypeScript, Tailwind CSS, Nodemailer.
 
-## Architecture and source map
+## Architektura a struktura
 
-- `app/page.tsx` — landing-page composition
-- `components/` — product sections, gallery and forms
-- `app/api/contact/route.ts` — contact email handler
-- `app/api/submit-order/route.ts` — order email handler
-- `app/api/images/route.ts` — image-list endpoint
+- `app/page.tsx` — sestavení úvodní stránky
+- `components/` — produktové sekce, galerie a formuláře
+- `app/api/contact/route.ts` — odesílání kontaktních e-mailů
+- `app/api/submit-order/route.ts` — odesílání objednávek e-mailem
+- `app/api/images/route.ts` — rozhraní pro seznam obrázků
 
-## Local development
+## Lokální vývoj
 
-Requires Node.js and npm. From the repository root:
+Potřebujete Node.js a npm. V kořenové složce repozitáře spusťte:
 
 ```sh
 npm install
 npm run dev
 ```
 
-Build command declared by this checkout: `npm run build`.
+Příkaz pro sestavení uvedený v projektu: `npm run build`.
 
-These are the repository scripts, not a claim of a passing build. Dependency installation, build and live integrations were not executed during the documentation review.
+Jde o příkazy deklarované v repozitáři, nikoli o potvrzení úspěšného sestavení. Instalace závislostí, sestavení ani napojení na živé služby nebyly při úpravě dokumentace spuštěny.
 
-## Configuration and limitations
+## Konfigurace a omezení
 
-Both mail handlers read `EMAIL_PASSWORD` on the server. Review their existing SMTP sender and recipient configuration and replace it with an authorized test mailbox before testing; account identifiers are intentionally omitted here. Never commit mailbox credentials. An order form does not establish payment processing or an order-management backend.
+Oba e-mailové handlery čtou na serveru `EMAIL_PASSWORD`. Před testováním zkontrolujte nastavení SMTP, odesílatele a příjemce a použijte oprávněnou testovací schránku; identifikátory konkrétních účtů zde nejsou uvedeny. Heslo nikdy neukládejte do Gitu. Objednávkový formulář sám o sobě nedokládá zpracování plateb ani systém správy objednávek.
 
-The current development script binds to `0.0.0.0`. For a local-only preview, use `npx next dev -H 127.0.0.1`. Multiple Next.js configuration files are present; verify the effective configuration before deployment.
+Vývojový skript naslouchá na `0.0.0.0`. Pro náhled dostupný pouze z vlastního počítače použijte `npx next dev -H 127.0.0.1`. V repozitáři je více konfigurací Next.js; před nasazením ověřte, která se skutečně použije.
 
-## Portfolio relevance
+## Přínos pro portfolio
 
-Demonstrates a complete user-facing flow from product discovery to a server-side enquiry integration, with clear separation of public UI and mail credentials.
+Ukazuje cestu od prezentace produktu k serverovému zpracování poptávky a oddělení veřejného rozhraní od přihlašovacích údajů pošty.
 
-## Documentation next steps
+## Co doplnit do dokumentace
 
-Capture screenshots using synthetic data, document a reproducible test run, and record which integrations have been verified. Keep credentials and deployment-specific configuration outside version control.
+Snímky obrazovky s fiktivními daty, opakovatelný postup ověření a přehled skutečně otestovaných integrací. Přihlašovací údaje a konfigurace konkrétního nasazení patří mimo Git.
